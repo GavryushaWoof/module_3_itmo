@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>No game no life</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+    <div id="app">
+        <header>
+            <h1>{{sitename}}</h1>
+        </header>
+        <main>
+            <div>
+                <div id="imge">
+                    <figure>
+                        <img v-bind:src="product.image">
+                    </figure>
+                </div>
+                <div v-bind:id='product.id'>
+                    <h2 v-text='product.title'></h2>
+                    <p v-text='product.description'></p>
+                    <p>Разработчик: {{product.developer}}</p>
+                    <p>Издательство: {{product.publishing}}</p>
+                    <p>Дата релиза: {{product.releaseDate}}</p>
+                    <p>Жанр: {{product.genre}}</p>
+                    <p>Цена: {{product.price | formatPrice}}</p>
+                </div>
+                <div id="video">
+                    <video v-bind:src="product.video" autoplay="true" loop="true" muted="muted" controls></video>
+                </div>
+            </div>
+        </main>
+        <footer>
+            Источник:<a v-bind:href='product.link'>{{product.source}}</a>
+        </footer>
+    </div>
+    <script>
+        let app = new Vue({
+            el: '#app',
+            data: {
+                sitename: 'No game no life.',
+                product: {
+                    id: 'game_1',
+                    title: 'Spyro™ Reignited Trilogy',
+                    description: 'Путешествуйте по бескрайним просторам, встречайтесь с яркими персонажами и повторяйте былые подвиги в новом высоком разрешении. Когда королевство нуждается в спасении, ему на помощь готов прийти лишь один дракон.',
+                    developer: 'Toys for Bob, Iron Galaxy',
+                    publishing: 'Activision',
+                    releaseDate: '03.09.2019',
+                    genre: 'Экшены, Приключенческие игры',
+                    price: 1119,
+                    image: '../img/header.jpg',
+                    video: 'https://steamcdn-a.akamaihd.net/steam/apps/256752581/movie480.webm?t=1560272971',
+                    source: 'Steam',
+                    link: 'https://store.steampowered.com/app/996580/Spyro_Reignited_Trilogy/',
+                }
+            },
+            filters: {
+                formatPrice: function(val) {
+                    if (!val) return '';
+                    return val + " " + String.fromCharCode(8381);
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

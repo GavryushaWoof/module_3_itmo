@@ -1,0 +1,66 @@
+body {
+    margin: 0px;
+    font-family: cursive;
+    background-repeat: repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    background-size: cover;
+    background-image: url(../img/spyro.png);
+    user-select: none;
+}
+
+#app {
+    display: grid;
+    grid-template-areas: "header" "main" "footer";
+    grid-template-rows: 60px auto 7%;
+    height: 100vh;
+    grid-gap: 10px;
+    max-width: 2000px;
+    margin: 0 auto;
+}
+
+header {
+    grid-area: header;
+}
+
+main {
+    grid-area: main;
+}
+
+footer {
+    grid-area: footer;
+}
+
+#game_1 {
+    background: #c4e6f3e6;
+    border: 3px solid #808080;
+    border-radius: 20px;
+    width: 600px;
+    float: right;
+    pointer-events: none;
+}
+
+#imge,
+figure,
+header,
+h2 {
+    text-align: center;
+}
+
+#imge,
+figure,
+#video,
+#game_1,
+footer {
+    padding: 5px;
+    margin: 10px;
+}
+
+img {
+    height: 400px;
+}
+
+footer,
+a {
+    color: aliceblue;
+}
