@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Profile</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="../css/style2.css">
+</head>
+
+<body>
+    <div id="app">
+        <header>
+            <h1>{{sitename}} <br> {{profile.name}}</h1>
+        </header>
+        <main>
+            <figure>
+                <img v-bind:src="profile.photo">
+            </figure>
+            <div v-bind:id='profile.id'>
+                <p>Born: {{profile.dob}} <br> {{profile.bpl}}</p>
+                <p>Nationality: {{profile.nationality}}</p>
+                <p>Occupation: {{profile.occupation}}</p>
+                <p>Website: <a v-bind:href='profile.weblink'>{{profile.website}}></a></p>
+                <p>
+                    Signature:
+                    <p id="autograph">
+                        <img v-bind:src="profile.autograph">
+                    </p>
+                </p>
+            </div>
+        </main>
+        <footer>
+            References: <a v-bind:href="profile.link">{{profile.source}}</a>
+        </footer>
+    </div>
+    <script>
+        let app = new Vue({
+            el: '#app',
+            data: {
+                sitename: 'Profile',
+                profile: {
+                    id: 'person_1',
+                    name: 'Hideo Kojima',
+                    website: 'kojimaproductions.jp',
+                    weblink: 'http://www.kojimaproductions.jp/en/',
+                    dob: 'August 24, 1963',
+                    photo: '../img/Kojima.jpg',
+                    nationality: 'Japanese',
+                    bpl: 'Setagaya, Tokyo, Japan',
+                    occupation: 'Video game designer, writer, director, producer',
+                    autograph: '../img/Signature.png',
+                    source: 'Wikipedia',
+                    link: 'https://en.wikipedia.org/wiki/Hideo_Kojima'
+                }
+            }
+        })
+    </script>
+
+</body>
+
+</html>
