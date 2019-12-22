@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id='app'>
+        <h1 v-text='article.articleName'></h1>
+        <p v-text='article.mainContent'></p>
+        <p v-text='article.fullContent' v-if='article.visible'></p>
+        <button v-show='!article.visible' v-on:click="article.visible=!article.visible">Подробнее</button>
+    </div>
+    <script>
+        let app = new Vue({
+            el: '#app',
+            data: {
+                article: {
+                    articleName: 'Sonic the Hedgehog',
+                    mainContent: 'Серия видеоигр, созданная студией Sonic Team, а также торговая марка, основанная на этой серии и принадлежащая японской компании Sega.',
+                    fullContent: 'Основной составляющей торговой марки являются игры в жанре платформера, но, кроме этого, бренд Sonic the Hedgehog включает аниме, журналы и другие сопутствующие товары. Первая часть серии была создана командой из семи человек, которые позже стали сотрудниками Sonic Team. Изданный в 1991 году продукт оказался весьма успешным и привёл к появлению множества продолжений. Помимо платформеров, которые составляют основной костяк серии, Sega впоследствии стала выпускать гонки, головоломки, файтинги, спортивные симуляторы и даже ролевые игры.',
+                    visible: false,
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
