@@ -12,10 +12,10 @@
 <body>
     <div id='app'>
         <ul>
-            <li><a href="#" v-on:click="produkt.id=1 | gg">Главная</a></li>
-            <li><a href="#" v-on:click='produkt.id=2 | gg'>Услуги</a></li>
-            <li><a href="#" v-on:click='produkt.id=3 | gg'>Проэкты</a></li>
-            <li><a href="#" v-on:click='produkt.id=4 | gg'>Контакты</a></li>
+            <li><a href="#" v-on:click="gg(1)">Главная</a></li>
+            <li><a href="#" v-on:click='gg(2)'>Услуги</a></li>
+            <li><a href="#" v-on:click='gg(3)'>Проэкты</a></li>
+            <li><a href="#" v-on:click='gg(4)'>Контакты</a></li>
         </ul>
         <div>
             <p v-html='produkt.text'></p>
@@ -30,9 +30,9 @@
                     id: 1,
                 }
             },
-            computed: {
-                gg() {
-                    switch (this.produkt.id) {
+            methods: {
+                gg(a) {
+                    switch (a) {
                         case 1:
                             this.produkt.text = '<strong>Вельш корги пемброк</strong> – собака похожая на лису, любимая порода английской королевы, рыжая проныра, крадущая у людей покой, и возвращающая его только после того как порог дома переступит маленький коржик. А если завели одного, то будьте готовы через некоторое время услышать любимую фразу коржатников – «корги мало не бывает», причем, из собственных уст';
                             break;
