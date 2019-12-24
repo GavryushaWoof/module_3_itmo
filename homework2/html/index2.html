@@ -12,7 +12,7 @@
 <body>
     <div id='app'>
         <ul>
-            <li><a href="#" v-on:click="gg(1)">Главная</a></li>
+            <li><a href="#" v-on:click='gg(1)'>Главная</a></li>
             <li><a href="#" v-on:click='gg(2)'>Услуги</a></li>
             <li><a href="#" v-on:click='gg(3)'>Проэкты</a></li>
             <li><a href="#" v-on:click='gg(4)'>Контакты</a></li>
@@ -27,7 +27,6 @@
             data: {
                 produkt: {
                     text: '',
-                    id: 1,
                 }
             },
             methods: {
@@ -47,7 +46,6 @@
                             break;
                     }
                 }
-
             }
         })
     </script>
