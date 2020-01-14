@@ -46,20 +46,16 @@
             },
             methods: {
                 search: function() {
-                    console.log(2)
                     this.filteredArticles = this.articles.filter(
                         (el) => {
                             return el.articleName.toLowerCase().indexOf(this.query.toLowerCase()) > -1;
                         }
-
                     )
                 }
             },
-
             created: function() {
                 this.search();
             }
-
         })
     </script>
 </body>
