@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        a {
+            text-decoration-line: none;
+            color: #000;
+        }
+        
+        p {
+            display: inline-block;
+        }
+    </style>
+</head>
+
+<body>
+    <div id='app'>
+        <input type="text" v-model='query' @keyup.enter='search'>
+        <button @click='search'>&#128270;</button>
+        <button @click='onCklickSize' v-html='button'></button>
+        <div v-for='article in filteredArticles'>
+            <a :href="article.url" v-show='!size.active'>
+                <h1 v-text='article.articleName'></h1>
+            </a>
+            <a :href="article.url"><img :src="article.img" alt="article.articleName" :style='{height:size.height, float:size.float}'>
+                <p v-text='article.articleText' v-show='!size.active'></p>
+            </a>
+        </div>
+    </div>
+    <script>
+        let app = new Vue({
+            el: '#app',
+            data: {
+                articles: [{
+                    articleName: 'Как защитить лапы собаки от реагентов?',
+                    url: 'https://hvost.news/animals/dogs-care/kak-zashchitit-lapy-sobaki-ot-reagentov/',
+                    img: 'https://opt-1031816.ssl.1c-bitrix-cdn.ru/upload/resize_cache/iblock/e11/750_400_1/kak_zashchitit_lapy_sobaki_ot_reagentov.jpg?1578384372100227',
+                    articleText: 'Реагент спасает нас от гололеда, но у него есть и обратная сторона – особенно для собак. Чем реагент опасен и как защитить от него питомца?',
+                }, {
+                    articleName: 'Можно ли заводить собаку или кошку, если есть аллергия?',
+                    url: 'https://hvost.news/animals/cats-care/mozhno-li-zavodit-sobaku-ili-koshku-esli-est-allergiya/',
+                    img: 'https://opt-1031816.ssl.1c-bitrix-cdn.ru/upload/resize_cache/iblock/506/750_400_1/mozhno_li_zavodit_sobaku_ili_koshku_esli_est_allergiya.jpg?157812700490473',
+                    articleText: 'Что делать если у меня аллергия, а завести питомца очень хочется?',
+                }, {
+                    articleName: '5 простых шагов для правильного ухода за шерстью',
+                    url: 'https://hvost.news/animals/dogs-care/5-prostykh-shagov-dlya-pravilnogo-ukhoda-za-sherstyu/',
+                    img: 'https://opt-1031816.ssl.1c-bitrix-cdn.ru/upload/resize_cache/iblock/ddb/750_400_1/5_prostykh_shagov_dlya_pravilnogo_ukhoda_za_sherstyu.jpg?157258782368946',
+                    articleText: 'Почему за шерстью питомца важно ухаживать правильно?',
+                }, {
+                    articleName: 'Почему у собаки зимой выпадает шерсть?',
+                    url: 'https://hvost.news/animals/dogs-care/pochemu-u-sobaki-zimoy-vypadaet-sherst/',
+                    img: 'https://opt-1031816.ssl.1c-bitrix-cdn.ru/upload/resize_cache/iblock/616/750_400_1/pochemu_u_sobaki_zimoy_vypadaet_sherst.jpg?1576572206103226',
+                    articleText: 'Сезонная линька выпадает на весну и осень. Но почему многие собаки линяют в разгар зимы?',
+                }],
+                query: '',
+                filteredArticles: [],
+                size: {
+                    active: true,
+                    height: 0,
+                    float: ''
+                },
+                button: ''
+            },
+            methods: {
+                search: function() {
+                    this.filteredArticles = this.articles.filter(
+                        (el) => {
+                            return el.articleName.toLowerCase().indexOf(this.query.toLowerCase()) > -1;
+                        }
+                    )
+                },
+                onCklickSize: function() {
+                    this.size.active = !this.size.active
+                    if (this.size.active) {
+                        this.size.height = 300 + 'px';
+                        this.size.float = 'left';
+                        this.button = '&#9776;'
+                    } else {
+                        this.size.height = 150 + 'px';
+                        this.size.float = 'none';
+                        this.button = '&#x25A6;'
+                    }
+                }
+            },
+            created: function() {
+                this.search();
+                this.onCklickSize();
+            }
+        })
+    </script>
+</body>
+
+</html>
