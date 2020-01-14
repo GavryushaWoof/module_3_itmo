@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        .active {
+            color: rgb(252, 5, 5);
+        }
+    </style>
+</head>
+
+<body>
+    <div id='app'>
+        <h1 v-text='title'></h1>
+        <ul>
+            <li v-for='service in services' v-text="service.nameService" :value='service.price' :class='{active:service.isActive}' @click='onClickSum(service)'></li>
+            </li>
+            <span v-if='totalPrice>0'>Сумма выбранных услуг: {{totalPrice}} &#8381;</span>
+            <span v-else>Выберите услуги</span>
+    </div>
+    </div>
+    <script>
+        let app = new Vue({
+            el: '#app',
+            data: {
+                title: 'Услуги для животных',
+                services: [{
+                    nameService: 'Стрижка любой породы',
+                    price: 1500,
+                    isActive: false
+                }, {
+                    nameService: 'Гигиенические услуги',
+                    price: 1700,
+                    isActive: false
+                }, {
+                    nameService: 'SPA-карета',
+                    price: 4000,
+                    isActive: false
+                }, {
+                    nameService: 'Блеск-тату и стразы',
+                    price: 700,
+                    isActive: false
+                }, {
+                    nameService: 'Организация дня рождения',
+                    price: 5000,
+                    isActive: false
+                }, {
+                    nameService: 'Подготовка к выставкам',
+                    price: 1200,
+                    isActive: false
+                }],
+                totalPrice: 0,
+            },
+            methods: {
+                onClickSum: function(obj) {
+                    obj.isActive = !obj.isActive
+                    if (obj.isActive) {
+                        this.totalPrice += +obj.price
+                    } else {
+                        this.totalPrice -= +obj.price
+                    }
+                },
+            }
+        })
+    </script>
+</body>
+
+</html>
