@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        .blink {
+            animation: blink 7s infinite;
+        }
+        
+        @keyframes blink {
+            from {
+                opacity: 1;
+            }
+            to {
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id='app'>
+        <text-tab :tab='produkt.tabs' :current='produkt.currentTabs'></text-tab>
+    </div>
+    <script>
+        Vue.component('text-tab', {
+            props: {
+                tab: {
+                    type: Array,
+                    default: function() {
+                        return []
+                    }
+                },
+                current: {
+                    type: Number
+                }
+            },
+            template: `<div><p v-for='(str, index) in tab' v-show='current==index' class="blink" v-html='str'></p></div>`
+        })
+        let app = new Vue({
+            el: '#app',
+            data: {
+                produkt: {
+                    currentTabs: 0,
+                    tabs: ['- Зачем Вам зонт в помещении?<br>- А вдруг дождь?<br>- Впервые вижу человека, который боится дождя в помещении.<br>- Так я и не боюсь, у меня ведь зонт есть.', 'Товарищи! уважайте своего начальника! Ведь вы видите перед собой только одного придурка, а он — целую группу!', 'Корабль не тонет, когда он на воде, он тонет, когда вода в нем ... Не так важно, что происходит вокруг нас. Важно то, что происходит внутри нас.', 'Внук звонит бабушке: — Алло, бабуль, тут твоя дочь орет на меня. Приезжай, разберись, а?'],
+                }
+            },
+            created: function() {
+                setInterval(() => {
+                    this.produkt.currentTabs += 1;
+                    if (this.produkt.currentTabs + 1 > this.produkt.tabs.length) {
+                        this.produkt.currentTabs = 0
+                    }
+                }, 6000)
+            }
+        })
+    </script>
+</body>
+
+</html>
